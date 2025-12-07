@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { config } from './config';
 import { format, subHours, addHours, parseISO, isValid } from "date-fns";
 
 interface Draw {

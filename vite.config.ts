@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite'  // New v4 plugin
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   experimental: {
-    renderBuiltUrl: (filename, { hostId, hostType }) => {
+    renderBuiltUrl: (filename, { hostType }) => {
       if (hostType === 'js') return `"${filename}"`
       return `"./${filename}"`
     },

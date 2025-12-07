@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { config } from './config';
+
 
 const AdminForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -10,12 +12,12 @@ const AdminForm: React.FC = () => {
 
   const [message, setMessage] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  setFormData({
+    ...formData,
+    [e.target.name]: e.target.value,
+  });
+};
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
