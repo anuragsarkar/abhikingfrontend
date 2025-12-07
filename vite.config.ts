@@ -1,14 +1,23 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'  // New v4 plugin
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 
-// Rolldown-Vite: Keep experimental if you chose "yes" earlier
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
-  experimental: {
-    renderBuiltUrl: (filename, { hostType }) => {
-      if (hostType === 'js') return `"${filename}"`
-      return `"./${filename}"`
-    },
-  },
-})
+  plugins: [
+    react(),
+    tailwindcss(),
+  ],
+
+  base: "/",     // IMPORTANT for Vite + Netlify
+
+  build: {
+    assetsDir: "assets",
+    rollupOptions: {
+      output: {
+        entryFileNames: "assets/[name].[hash].js",
+        chunkFileNames: "assets/[name].[hash].js",
+        assetFileNames: "assets/[name].[hash].[ext]"
+      }
+    }
+  }
+});
