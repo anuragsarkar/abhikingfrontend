@@ -15,7 +15,7 @@ const Login: React.FC = () => {
     setLoading(true);
 
     // Static credentials check
-    if (number === "8090097944" && password === "admin@123#") {
+    if (number === "king" && password === "groot@89") {
       // Simulate login delay
       setTimeout(() => {
         localStorage.setItem("isAdminLoggedIn", "true");
