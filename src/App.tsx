@@ -59,14 +59,21 @@ const App: React.FC = () => {
   );
 };
 
+interface ChartRow {
+  date: string;
+  ds: string;
+  gl: string;
+  fb: string;
+  gz: string;
+}
+
 const HomeContent = () => {
   // Generate dates from 1 Dec to today (11 Dec 2025)
   const today = new Date();
-  const currentDay = today.getDate(); // 11
-  const year = today.getFullYear();   // 2025
+  const currentDay = today.getDate(); // number: 11
   const month = today.toLocaleString("default", { month: "short" }); // "Dec"
 
-  const chartData = Array.from({ length: currentDay }, (_, i) => {
+  const chartData: ChartRow[] = Array.from({ length: currentDay }, (_, i) => {
     const day = currentDay - i; // newest first
     const isToday = day === currentDay;
     return {
@@ -125,11 +132,11 @@ const HomeContent = () => {
                 <tr
                   key={row.date}
                   className={`border-t transition ${
-                    row.date.includes(currentDay) ? "bg-yellow-50 font-bold" : "hover:bg-gray-50"
+                    row.date.includes(String(currentDay)) ? "bg-yellow-50 font-bold" : "hover:bg-gray-50"
                   }`}
                 >
                   <td className="py-4 font-medium text-gray-800">
-                    {row.date} {row.date.includes(currentDay) && "Today"}
+                    {row.date} {row.date.includes(String(currentDay)) && "Today"}
                   </td>
                   <td className="py-4 text-3xl font-extrabold text-green-600 border-l">
                     {row.ds}
