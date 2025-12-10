@@ -208,7 +208,7 @@ export default function RegionalDrawResults() {
   );
 
   return (
-    <div className="bg-gray-100 min-h-screen py-6">
+    <div className="bg-gray-100 py-6">
       <div className="max-w-4xl mx-auto bg-white shadow-xl">
         {/* Header */}
         <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white text-center py-4 text-base font-bold">
@@ -230,11 +230,6 @@ export default function RegionalDrawResults() {
           <Section title="NEXT" list={next} />
           <Section title="REST" list={rest} />
         </div>
-      </div>
-
-      {/* Footer */}
-      <div className="text-center mt-6 text-gray-600 text-xs">
-        Last Updated: {format(nowIST, "dd MMMM yyyy, h:mm:ss a")} IST
       </div>
     </div>
   );

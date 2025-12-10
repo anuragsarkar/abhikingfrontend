@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { config } from './config';
-
+import { useNavigate } from "react-router-dom";
 
 const AdminForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -52,6 +52,21 @@ const AdminForm: React.FC = () => {
       console.error("Error:", error);
       setMessage("Failed to save data.");
     }
+  };
+
+  const navigate = useNavigate();
+
+   useEffect(() => {
+    const isLoggedIn = localStorage.getItem("isAdminLoggedIn");
+    if (isLoggedIn !== "true") {
+      navigate("/login");
+    }
+  }, [navigate]);
+
+
+   const handleLogout = () => {
+    localStorage.removeItem("isAdminLoggedIn");
+    navigate("/"); // Redirect to home (or /login)
   };
 
   return (
@@ -170,6 +185,12 @@ const AdminForm: React.FC = () => {
       {message && (
         <p style={{ marginTop: 15, fontWeight: "bold" }}>{message}</p>
       )}
+
+      <div className="text-center">
+            <button onClick={handleLogout} 
+                className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-12 rounded-xl text-lg transition transform hover:scale-105 shadow-lg">Logout
+            </button>
+          </div>
     </div>
   );
 };
